@@ -223,7 +223,7 @@ My "Kerne-Kompetencer" på mit portfolio demonstrerer erfaring med begge arkitek
 ## 📞 Questions?
 
 - **GitHub:** Åbn et "Issue" for tekniske spørgsmål
-- **Case Study:** Se den fulde case study på [Link til din portfolio-URL her]
+- **Case Study:** Se den fulde case study på.
 
 ## 📄 License
 

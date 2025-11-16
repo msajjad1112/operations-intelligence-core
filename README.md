@@ -2,7 +2,6 @@
 
 A serverless, real-time QC and compliance automation system for manufacturing SMEs. This boilerplate demonstrates how to transform paper-based or Excel-dependent operations into an intelligent, audit-trail system using Google Workspace.
 
-**See the full interactive demo and case study:** [Link til din portfolio-URL her]
 
 ## 🎯 The Problem
 

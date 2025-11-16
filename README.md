@@ -1,47 +1,46 @@
 # SME Operations Core: Google Apps Script Boilerplate
 
-A serverless, real-time QC and compliance automation system for manufacturing SMEs. This boilerplate demonstrates how to transform paper-based or Excel-dependent operations into an intelligent, audit-trail system using Google Workspace.
+En serverløs, real-time QC og compliance automatisering system til producerende SME'er. Dette boilerplate demonstrerer hvordan du transformerer papirbaserede eller Excel-afhængige operationer til et intelligent, revisionsspor-system ved hjælp af Google Workspace.
 
+## 🎯 Problemet
 
-## 🎯 The Problem
-
-In manufacturing environments, especially Danish SMEs, critical compliance and production data is typically captured on paper, then manually entered into Excel sheets—often with a 24+ hour delay.
+I produktionsmiljøer, især danske SME'er, registreres kritiske compliance- og produktionsdata typisk på papir, derefter manuelt indsat i Excel-ark—ofte med 24+ timers forsinkelse.
 
 <table>
 <tr>
-<th>Challenge</th>
-<th>Current State</th>
-<th>Consequence</th>
+<th>Udfordring</th>
+<th>Nuværende Situation</th>
+<th>Konsekvens</th>
 </tr>
 <tr>
-<td>Data Lag</td>
-<td>Paper forms collected at shift end, entered next day</td>
-<td>Management decisions based on outdated information</td>
+<td>Dataforsinkelse</td>
+<td>Papirformularer indsamlet ved skiftende, indtastet næste dag</td>
+<td>Ledelsesbeslutninger baseret på forældet information</td>
 </tr>
 <tr>
-<td>Compliance Risk</td>
-<td>Paper records can be misplaced, damaged, or unclear</td>
-<td>Difficulty proving compliance during audits (ISO 22000, FSSC 22000)</td>
+<td>Compliance-risiko</td>
+<td>Papirregistreringer kan gå tabt, beskadiges eller være uklare</td>
+<td>Vanskelighed med at bevise compliance under revisioner (ISO 22000, FSSC 22000)</td>
 </tr>
 <tr>
-<td>Manual Data Entry</td>
-<td>Team leaders spend time on administrative tasks</td>
-<td>Less time for actual quality management and problem-solving</td>
+<td>Manuel datainput</td>
+<td>Teamledere bruger tid på administrative opgaver</td>
+<td>Mindre tid til egentlig kvalitetsstyring og problemløsning</td>
 </tr>
 <tr>
-<td>No Real-Time Alerts</td>
-<td>QC failures discovered during weekly/monthly review</td>
-<td>Limited ability to take immediate corrective action</td>
+<td>Ingen real-time-alarmer</td>
+<td>QC-fejl opdagede under ugentlig/månedlig gennemgang</td>
+<td>Begrænset evne til at tage øjeblikkelig korrigerende foranstaltning</td>
 </tr>
 </table>
 
-## ✅ The Solution
+## ✅ Løsningen
 
-Real-time compliance automation via serverless architecture, using Google Workspace—the platform already used by 90%+ of Danish SMEs.
+Real-time compliance-automatisering via serverløs arkitektur ved hjælp af Google Workspace—platformen der bruges af 90%+ af danske SME'er.
 
-### How It Works
+### Hvordan det virker
 
-This architecture provides a high-impact, low-cost solution using tools you already own.
+Denne arkitektur giver en højtpåvirkende, billig løsning ved hjælp af værktøjer, du allerede ejer.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -62,31 +61,31 @@ This architecture provides a high-impact, low-cost solution using tools you alre
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Key Benefits
+### Vigtigste Fordele
 
-- **Data available within seconds**, not hours or days
+- **Data tilgængelig inden for sekunder**, ikke timer eller dage
 - **Automatisk audit-spor til compliance-dokumentation**
 - **Bruger værktøjer, I allerede har** (Google Workspace)
 - **Ingen eksterne systemer at vedligeholde**
 
-## 💡 What This Code Does
+## 💡 Hvad denne kode gør
 
-The repository's `google-apps-script/Code.gs` file is the "brain" of the operation.
+Filens `google-apps-script/Code.gs` i repositoriet er "hjernen" i operationen.
 
-### 1. Immutable Audit Logging
+### 1. Uforanderlig Audit-registrering
 
-Every form submission is logged to a separate audit sheet that preserves the original data exactly as submitted. This is essential for ISO 22000, FSSC 22000, and GMP compliance.
+Hver formularindsendelse logges til et separat audit-ark, der bevarer de oprindelige data præcis som indsendt. Dette er afgørende for ISO 22000, FSSC 22000 og GMP compliance.
 
 ```javascript
 // Hver indsendelse gemmes permanent, præcis som indsendt
 logToAuditSheet(timestamp, responseData);
 ```
 
-**Why it matters:** Under en audit verificerer inspektører dette audit-ark for at bekræfte korrekt QC-dokumentation.
+**Hvorfor det betyder noget:** Under en revision verificerer inspektører dette audit-ark for at bekræfte korrekt QC-dokumentation.
 
-### 2. Real-Time Failure Notification
+### 2. Real-Time fejlmeddelelse
 
-When a QC failure is recorded, the system immediately notifies the relevant team member, not days later.
+Når en QC-fejl registreres, informerer systemet straks det relevante teammedlem, ikke dage senere.
 
 ```javascript
 if (responseData['Status'][0] === 'FAIL') {
@@ -95,13 +94,13 @@ if (responseData['Status'][0] === 'FAIL') {
 }
 ```
 
-**Typical workflow:**
+**Typisk workflow:**
 - **Før:** QC-fejl noteres på papir → opdages ved ugentlig gennemgang → 3-5 dages forsinkelse
 - **Med dette system:** QC-fejl registreres → øjeblikkelig notifikation → kan undersøges, mens materialer stadig er tilgængelige
 
-### 3. Robust Error Handling
+### 3. Robust fejlhåndtering
 
-If something goes wrong (network issue, Slack unavailable), the system logs it and alerts administrators. Compliance documentation is never compromised.
+Hvis noget går galt (netværksproblem, Slack ikke tilgængelig), logges det, og administratorer bliver alertet. Compliance-dokumentation bliver aldrig kompromitteret.
 
 ```javascript
 try {
@@ -113,25 +112,25 @@ try {
 }
 ```
 
-## 🚀 Quick Start
+## 🚀 Hurtig Start
 
 En trin-for-trin guide til at implementere denne løsning på 30 minutter.
 
-### Step 1: Create your Google Sheet & Form
+### Trin 1: Opret dit Google Sheet og formular
 
 1. Opret et nyt Google Sheet
-2. Opret en Google Form med dine QC-spørgsmål (f.eks. "Batch ID", "Operatør", "Status [PASS/FAIL]")
+2. Opret en Google Form med dine QC-spørgsmål (f.eks. "Batch-ID", "Operatør", "Status [PASS/FAIL]")
 3. I Form'ens "Svar"-fane, link den til dit Google Sheet
 
-### Step 2: Add the Apps Script code
+### Trin 2: Tilføj Apps Script-koden
 
-1. I dit Google Sheet, klik **Extensions > Apps Script**
-2. Slet alt standard-kode
+1. I dit Google Sheet, klik **Udvidelser > Apps Script**
+2. Slet al standard-kode
 3. Kopier indholdet fra `google-apps-script/Code.gs` (fra dette repo) ind i editoren
 4. Opdater `SLACK_WEBHOOK_URL` og `AUDIT_LOG_SHEET_NAME` variablerne
 5. Klik "Gem"
 
-### Step 3: Set up the trigger
+### Trin 3: Opsæt udløseren
 
 1. I Apps Script-editoren, klik på "Udløsere" (ur-ikonet) i venstre side
 2. Klik "Tilføj udløser" nederst til højre
@@ -140,36 +139,36 @@ En trin-for-trin guide til at implementere denne løsning på 30 minutter.
 5. Vælg hændelsestype: Ved formularindsendelse
 6. Klik "Gem" og godkend tilladelserne
 
-### Step 4: Test
+### Trin 4: Test
 
 1. Indsend en test-formular med Status = "FAIL"
 2. Tjek din Slack-kanal for en notifikation
 3. Verificer, at dit "Audit_Log_Immutable"-ark har den nye række
 
-## Scaling Up: The Next Level with Firebase
+## Skalering: Næste Niveau med Firebase
 
-This `Code.gs` solution is perfect for 90% of SME use cases. When volume grows, or if you need a fully custom operator-interface (en React-app), the next logical step is to replace Google Sheets with Firebase.
+Denne `Code.gs` løsning er perfekt til 90% af SME-tilfælde. Når mængden vokser, eller hvis du har brug for en helt tilpasset operatør-grænseflade (en React-app), er det næste logiske skridt at erstatte Google Sheets med Firebase.
 
 <table>
 <tr>
-<th>Component</th>
-<th>Google Sheets (This Repo)</th>
-<th>Firebase (Next Level)</th>
+<th>Komponent</th>
+<th>Google Sheets (Dette Repo)</th>
+<th>Firebase (Næste Niveau)</th>
 </tr>
 <tr>
 <td>Database</td>
 <td>Google Sheet</td>
-<td>Firestore or Realtime Database</td>
+<td>Firestore eller Realtime Database</td>
 </tr>
 <tr>
-<td>Logic</td>
+<td>Logik</td>
 <td>Google Apps Script</td>
-<td>Google Cloud Functions (serverless)</td>
+<td>Google Cloud Functions (serverløs)</td>
 </tr>
 <tr>
 <td>Input</td>
 <td>Google Forms</td>
-<td>Custom React App</td>
+<td>Brugerdefineret React App</td>
 </tr>
 <tr>
 <td>Fordel</td>
@@ -178,56 +177,55 @@ This `Code.gs` solution is perfect for 90% of SME use cases. When volume grows, 
 </tr>
 </table>
 
-My "Kerne-Kompetencer" på mit portfolio demonstrerer erfaring med begge arkitekturer.
+Min "Kerne-Kompetencer" på mit portfolio demonstrerer erfaring med begge arkitekturer.
 
-## 🔧 Technical Stack
+## 🔧 Teknologi Stack
 
 <table>
 <tr>
-<th>Component</th>
-<th>Technology</th>
-<th>Why?</th>
+<th>Komponent</th>
+<th>Teknologi</th>
+<th>Hvorfor?</th>
 </tr>
 <tr>
-<td>Compute</td>
+<td>Beregning</td>
 <td>Google Apps Script (V8 Runtime)</td>
-<td>Serverless, runs on Google infrastructure</td>
+<td>Serverløs, kører på Google-infrastruktur</td>
 </tr>
 <tr>
 <td>Database</td>
 <td>Google Sheets API</td>
-<td>Already used by most SMEs</td>
+<td>Allerede brugt af de fleste SME'er</td>
 </tr>
 <tr>
-<td>Form Input</td>
+<td>Formular Input</td>
 <td>Google Forms</td>
-<td>Simple UI, works on tablets/phones</td>
+<td>Simpel UI, fungerer på tablets/telefoner</td>
 </tr>
 <tr>
-<td>Notifications</td>
-<td>Slack API (optional)</td>
-<td>Real-time alerts, or use email instead</td>
+<td>Notifikationer</td>
+<td>Slack API (valgfrit)</td>
+<td>Real-time alarmer eller brug e-mail i stedet</td>
 </tr>
 <tr>
 <td>Audit Trail</td>
-<td>Protected Google Sheets</td>
-<td>Compliance documentation, immutable records</td>
+<td>Beskyttet Google Sheets</td>
+<td>Compliance-dokumentation, uforanderlige registreringer</td>
 </tr>
 <tr>
 <td>Dashboard</td>
-<td>Looker Studio (optional)</td>
-<td>Management visibility into QC trends</td>
+<td>Looker Studio (valgfrit)</td>
+<td>Ledelsessynlighed i QC-tendenser</td>
 </tr>
 </table>
 
-## 📞 Questions?
+## 📞 Spørgsmål?
 
 - **GitHub:** Åbn et "Issue" for tekniske spørgsmål
-- **Case Study:** Se den fulde case study på.
 
-## 📄 License
+## 📄 Licens
 
-MIT License — See LICENSE file for details.
+MIT License — Se LICENSE-fil for detaljer.
 
-**Built by:** Sajjad Sarfraz  
-**Last updated:** November 2025
+**Bygget af:** Sajjad Sarfraz  
+**Sidste opdatering:** November 2025
